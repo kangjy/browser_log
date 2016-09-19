@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript" src="../log4js.js"></script>
+<script type="text/javascript" src="../appenders/sendimg.js"></script>
+<script type="text/javascript" src="../layouts/plainjson.js"></script>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	var firstLogger = new Log4js.getLogger("myfirstlog");
+	firstLogger.setLevel(Log4js.Level.ALL);
+	var append = new Log4js.BrowserAppender();// 创建一个日志输出器
+	var imgappend = new Log4js.SendImgAppender();// 创建一个大点日志输出去
+	firstLogger.addAppender(append);
+	firstLogger.addAppender(imgappend);
+	var layout = new Log4js.BasicLayout();//定义一个日志输出格式
+	append.setLayout(layout);
+	var plainLayout = new Log4js.PlainJSONLayout();
+	imgappend.setLayout(plainLayout);
+	firstLogger.trace("trace me")
+	firstLogger.debug("debug me")
+	firstLogger.info("info me")
+	firstLogger.warn('warn me');
+	firstLogger.error("error me");
+</script>
+</html>
